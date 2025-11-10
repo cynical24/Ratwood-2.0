@@ -99,7 +99,7 @@
 		var/obj/item/heart_canister/canister = slots[i]
 		if(canister)
 			options["Remove [canister.name]"] = i
-	
+
 	if(!options.len)
 		to_chat(user, span_warning("The rack is empty."))
 		return
@@ -132,6 +132,8 @@
 				. += span_notice("It contains:")
 				has_canisters = TRUE
 			. += span_notice("- [canister.name] in the [slot_types[i]] slot")
+		else
+			. += span_notice("- an empty void in the [slot_types[i]] slot")
 
 	if(!has_canisters)
 		. += span_notice("All slots are empty.")
