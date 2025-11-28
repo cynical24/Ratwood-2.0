@@ -502,6 +502,8 @@ GLOBAL_VAR_INIT(mobids, 1)
 				visible_message(span_emote("[message] [target]."))
 
 	var/list/result = A.examine(src)
+	if(isliving(src) && src.m_intent == MOVE_INTENT_SNEAK && isliving(A) && A != src)
+		A.detect_inspection(src)
 	if(result)
 		to_chat(src, result.Join("\n"))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)

@@ -268,6 +268,19 @@
 				BUFLUC++
 			STALUC = newamt
 
+/mob/living/proc/detect_inspection(mob/living/inspector)
+	if(!inspector)
+		return
+	if(!isliving(inspector) || inspector == src)
+		return
+	var/target_per = get_stat(STATKEY_PER)
+	var/roll = rand(1,20) + (target_per - 10)
+	var/threshold = 15
+	if(roll >= threshold)
+		to_chat(src, span_danger("I feel someone watching me!"))
+		visible_message(span_warning("[src] looks around suspiciously."), span_danger("I feel someone watching me!"))
+	return
+
 /// Calculates a luck value in the range [1, 400] (calculated as STALUC^2), then maps the result linearly to the given range
 /// min must be >= 0, max must be <= 100, and min must be <= max
 /// For giving 
