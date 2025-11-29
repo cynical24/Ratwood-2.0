@@ -503,7 +503,9 @@ GLOBAL_VAR_INIT(mobids, 1)
 
 	var/list/result = A.examine(src)
 	if(isliving(src) && src.m_intent == MOVE_INTENT_SNEAK && isliving(A) && A != src)
-		A.detect_inspection(src)
+		var/mob/living/L = A
+		if(L)
+			L.detect_inspection(src)
 	if(result)
 		to_chat(src, result.Join("\n"))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)

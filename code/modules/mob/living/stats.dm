@@ -275,9 +275,8 @@
 		return
 	var/target_per = get_stat(STATKEY_PER)
 	var/roll = rand(1,20) + (target_per - 10)
-	var/threshold = 15
+	var/threshold = 18 // use this to change the difficulty check
 	if(roll >= threshold)
-		to_chat(src, span_danger("I feel someone watching me!"))
 		visible_message(span_warning("[src] looks around suspiciously."), span_danger("I feel someone watching me!"))
 	return
 
