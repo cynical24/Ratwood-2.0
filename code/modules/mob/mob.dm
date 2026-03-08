@@ -1221,6 +1221,19 @@ GLOBAL_VAR_INIT(mobids, 1)
 		return
 	return TRUE
 
+/// higher literacy levels get fancier calligraphy
+/mob/proc/get_writing_style()
+	var/level = get_skill_level(/datum/skill/misc/reading)
+	if(level >= 5)
+		return "Lucida Calligraphy"
+	else if(level >= 3)
+		return "Segoe Script"
+	else if(level >= 1)
+		return "Times New Roman"
+	else
+		// not literate fallback, shouldn't be called
+		return "Courier New"
+
 ///Can this mob hold items
 /mob/proc/can_hold_items()
 	return FALSE
