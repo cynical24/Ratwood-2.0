@@ -290,10 +290,15 @@
 
 	t = parsemarkdown(t, user, iscrayon)
 
+	// choose font based on writer's literacy
+	var/font = FOUNTAIN_PEN_FONT
+	if(user)
+		font = user.get_writing_style()
+
 	if(istype(P, /obj/item/natural/thorn))
-		t = "<font face=\"[FOUNTAIN_PEN_FONT]\" color=#862f20>[t]</font>"
+		t = "<font face=\"[font]\" color=#862f20>[t]</font>"
 	else if(istype(P, /obj/item/natural/feather))
-		t = "<font face=\"[FOUNTAIN_PEN_FONT]\" color=#14103f>[t]</font>"
+		t = "<font face=\"[font]\" color=#14103f>[t]</font>"
 
 	// Count the fields
 	var/laststart = 1
